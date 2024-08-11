@@ -73,12 +73,12 @@ async function show(req, res) {
   async function update(req, res) {
     try {
       // find the flight and update it
-      const flight = await Flight.findByIdAndUpdate(req.params.flightId, req.body, {new: true})
+      await Flight.findByIdAndUpdate(req.params.flightId, req.body, {new: true})
       // redirect to 
-      res.redirect(`/flights/${req.params.todoId}`)
+      res.redirect(`/flights/${req.params.flightId}`)
     } catch (error) {
       console.log(error)
-      res.redirect(`/flights/${req.params.todoId}`)
+      res.redirect(`/flights/${req.params.flightId}`)
     }
   }
 
