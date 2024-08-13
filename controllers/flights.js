@@ -94,7 +94,7 @@ async function show(req, res) {
       res.redirect(`/flights/${flight._id}`)
     } catch (error) {
       console.log(error)
-      res.redirect(`/flights/${req.params.flightId}`)
+      res.redirect('/flights')
     }
   }
 
@@ -106,5 +106,5 @@ export {
     edit,
     deleteFlight as delete,
     update,
-    createTicket
+    createTicket,
 }
