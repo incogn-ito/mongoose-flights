@@ -3,6 +3,10 @@ import mongoose from 'mongoose'
 // optional shortcut to the mongoose.Schema class
 const Schema = mongoose.Schema
 
+const mealSchema = ({
+  name: String
+})
+
 const ticketSchema = new Schema({
     seat: {
       type: String,
