@@ -1,4 +1,6 @@
 import { Flight } from "../models/flight.js"
+import { Meal } from "../models/meal.js"
+
 
 
 function newFlight(req, res) {
@@ -11,7 +13,7 @@ async function create(req, res) {
     try {
        const flights = await Flight.create(req.body)
        console.log('/flights')
-       res.redirect('/flights')
+       res.redirect(`/flights/${flight._id}`)
     } catch (error) {
         console.log(error)
         res.redirect('/flights/new')
@@ -35,11 +37,13 @@ async function index(req, res) {
 
 async function show(req, res) {
     try {
-      const flight = await Flight.findById(req.params.flightId)
+      const flight = await Flight.findById(req.params.flightId).populate('meal')
+      const meals = await Meal.find({_id: {$nin: flight.meal}})
       // render a view
       res.render('flights/show', {
         flight,
-        title: 'Flight Detail'
+        title: 'Flight Detail',
+        meals
       })
     } catch (error) {
       console.log(error)

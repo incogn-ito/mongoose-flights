@@ -36,6 +36,7 @@ const flightSchema = new Schema ({
         max: 9999,
     },
     tickets: [ticketSchema],
+    meal: [{type: Schema.Types.ObjectId, ref: 'Meal'}],
     departs: {
       type: Date,
       default: Date.now,
