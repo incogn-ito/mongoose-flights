@@ -1,5 +1,5 @@
 <%- include('../partials/html-head') %>
-<link rel="stylesheet" href="/stylesheets/movies/edit.css" />
+<link rel="stylesheet" href="/stylesheets/flights/edit.css" />
 <%- include('../partials/nav') %>
 
 <main>
@@ -7,14 +7,18 @@
     <form 
     id="new-form" 
     action="/flights/<%= flight._id %>?_method=PUT" 
-    method="POST">
+    method="POST"
+    >
         <label for="airline-select">Airline:</label>
         <select name="airline" id="airline-select">
+          <option value="<%= flight.airline %>"><%= flight.airline %></option>
           <option value="American">American</option>
           <option value="Southwest">Southwest</option>
           <option value="United">United</option>
         </select>
+        <label for="airport-select">Airport:</label>
         <select name="airport" id="airport-select">
+        <option value="<%= flight.airport %>"><%= flight.airport %></option>
           <option value="AUS">AUS</option>
           <option value="DFW">DFW</option>
           <option value="DEN">DEN</option>
@@ -22,9 +26,10 @@
           <option value="SAN">SAN</option>
         </select>
         <label for="flightNo-input">Flight No:</label>
-        <input type="number" name="flightNo" id="flightNo-input">
+        <input type="number" value="<%= flight.flightNo %>" name="flightNo" id="flightNo-input">
         <label for="departs-input">Departs:</label>
-        <input type="string" name="departs" id="departs-input">
+        <input type="string" value="<%= flight.departs %>" name="departs" id="departs-input"
+        >
         <button type="submit">Save Flight</button>
       </form>
     </main>

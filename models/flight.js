@@ -4,7 +4,10 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const ticketSchema = new Schema({
-    seat: String,
+    seat: {
+      type: String,
+      match: /[A-F][1-9]\d?/
+    },
     price: {
         type: Number,
         min: 0
@@ -29,7 +32,12 @@ const flightSchema = new Schema ({
         max: 9999,
     },
     tickets: [ticketSchema],
-    departs: Date
+    departs: {
+      type: Date,
+      default: Date.now,
+      get: (date)=> 
+        date.toLocaleString(),
+    }
     }, {    
         timestamps: true
 })

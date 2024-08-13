@@ -6,7 +6,8 @@
   <h1><%= title %></h1>
   <section>
     <div>Airline: </div>
-    <div><%= flight.airline %>
+    <div>
+      <%= flight.airline %>
         <a href="/flights/<%= flight._id %>/edit">
             <button>Edit Flight</button>
         </a>
@@ -18,6 +19,34 @@
     <div>Departure: </div>
     <div><%= flight.departs %></div>
   </section>
+    <% if (flight.tickets.length) { %>
+      <table>
+        <thead>
+          <tr>
+            <th>Seat</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% flight.tickets.forEach(function(ticket) { %>
+            <tr>
+              <td><%= ticket.seat %></td>
+              <td><%= ticket.price %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <h3>No Tickets Yet</h3>
+    <% } %>
+    <h2>Tickets</h2>
+    <form action="/flights/<%= flight._id %>/tickets" method="POST" id="add-review-form">
+      <label for="seat-input">Seat:</label>
+      <input name="seat" placeholder="i.e. /[A-F][1-9]\d?/" required pattern="[A-F][1-9]\d?"></input>  
+      <label for="price-input">Price:</label>
+      <input type= "number" name="price"></input>  
+      <button type="submit">Add Ticket</button>
+      </form>
 </main>
   
 <%- include('../partials/footer') %>

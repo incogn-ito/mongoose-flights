@@ -9,8 +9,8 @@
       <tr>
         <th>Airline</th>
         <th>Airport</th>
-        <th></th>
-        <th></th>
+        <th>Details</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -22,7 +22,7 @@
         <td>
           <form 
             action="/flights/<%= flight._id %>?_method=DELETE" 
-            method="POST" class="delete-form"
+            method="POST"
           >
             <button type="submit">X</button>
           </form>
